@@ -50,7 +50,7 @@
                                  <div class="mini_cart">
                                     <div class="cart_item top">
                                        <div class="cart_img">
-                                           <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
+                                           <a href="#"><img src="./assets/img/s-product/product.jpg" alt=""></a>
                                        </div>
                                         <div class="cart_info">
                                             <a href="#">Apple iPhone SE 16GB</a>
@@ -64,7 +64,7 @@
                                     </div>
                                     <div class="cart_item bottom">
                                        <div class="cart_img">
-                                           <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
+                                           <a href="#"><img src="./assets/img/s-product/product2.jpg" alt=""></a>
                                        </div>
                                         <div class="cart_info">
                                             <a href="#">Marshall Portable  Bluetooth</a>
@@ -198,7 +198,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="logo">
-                                <a href="index.jsp"><img src="assets/img/logo/logo.png" alt=""></a>
+                                <a href="index.jsp"><img src="./assets/img/logo/logo.png" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-4">
@@ -209,7 +209,7 @@
                                      <div class="mini_cart">
                                         <div class="cart_item top">
                                        <div class="cart_img">
-                                           <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
+                                           <a href="#"><img src="./assets/img/s-product/product.jpg" alt=""></a>
                                        </div>
                                         <div class="cart_info">
                                             <a href="#">Apple iPhone SE 16GB</a>
@@ -223,7 +223,7 @@
                                     </div>
                                     <div class="cart_item bottom">
                                        <div class="cart_img">
-                                           <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
+                                           <a href="#"><img src="./assets/img/s-product/product2.jpg" alt=""></a>
                                        </div>
                                         <div class="cart_info">
                                             <a href="#">Marshall Portable  Bluetooth</a>
@@ -282,7 +282,7 @@
                         </div>
                     </div>
                     <div class="logo_container">
-                        <a href="index.jsp"><img src="assets/img/logo/logo.png" alt=""></a>
+                        <a href="index.jsp"><img src="./assets/img/logo/logo.png" alt=""></a>
                     </div>
                     <div class="right_menu">
                         <div class="main_menu"> 

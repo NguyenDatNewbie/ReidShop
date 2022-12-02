@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ReidShop:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>ReidShop</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="ReidShop-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="ReidShop:war exploded" />
+    </root>
+  </artifact>
+</component>
