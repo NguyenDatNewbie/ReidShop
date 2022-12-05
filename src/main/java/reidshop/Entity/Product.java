@@ -59,6 +59,7 @@ public class Product {
 	public int getPromotion() {
 		return promotion;
 	}
+
 	public void setPromotion(int promotion) {
 		this.promotion = promotion;
 	}
@@ -98,5 +99,8 @@ public class Product {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	
+
+	public BigDecimal Tich ( int a, BigDecimal b ) {
+		return BigDecimal.valueOf( a ).multiply( b );
+	}
 }

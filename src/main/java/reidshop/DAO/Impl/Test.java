@@ -5,7 +5,9 @@ package reidshop.DAO.Impl;
 
 import java.util.List;
 
+import reidshop.DAO.IImagesDAO;
 import reidshop.DAO.IProductDAO;
+import reidshop.Entity.Images;
 import reidshop.Entity.Product;
 
 /**
@@ -27,18 +29,16 @@ public class Test {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		IProductDAO p = new ProductDAOImpl();
-		Product pr = p.getProduct(1);
-		pr.setName("Update");
-		p.Update(pr);
-		List<Product> pro = p.getSellingProduct();
-		
+		IImagesDAO i = new ImagesDAOImpl();
+		List<Product> pro = p.getSellingProduct(1);
+//		List<Images> img = i.getByProductId(2);
 	
-		for (Product data :pro
-		) {
-			System.out.println(data.getId());
-			System.out.println(data.getName());
-		}
-		System.out.println(pr.getId());
+//		for (Product p :pro
+//		) {
+////			System.out.println(data.getProduct_id());
+////			System.out.println(data.getImg());
+//		}
+		
 	}
 
 }

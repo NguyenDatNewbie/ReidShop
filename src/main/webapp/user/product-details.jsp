@@ -12,17 +12,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Favicon -->
 <link rel="shortcut icon" type="image/x-icon"
-	href="assets/img/favicon.ico">
+	href="./assets/img/favicon.ico">
 
 <!-- CSS 
     ========================= -->
 
 
 <!-- Plugins CSS -->
-<link rel="stylesheet" href="assets/css/plugins.css">
+<link rel="stylesheet" href="./assets/css/plugins.css">
 
 <!-- Main Style CSS -->
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="./assets/css/style.css">
 
 </head>
 
@@ -56,37 +56,23 @@
 			<div class="row">
 				<div class="col-lg-5 col-md-5">
 					<div class="product-details-tab">
-
 						<div id="img-1" class="zoomWrapper single-zoom">
-							<a href="#"> <img id="zoom1"
-								src="assets/img/product/product5.jpg"
-								data-zoom-image="assets/img/product/product5.jpg" alt="big-1">
-							</a>
+							<img id="zoom1"
+								src="${ImagesDAO.getByProductId(product.id).img}"
+								data-zoom-image="${ImagesDAO.getByProductId(product.id).img}" alt="big-1">
 						</div>
 
 						<div class="single-zoom-thumb">
 							<ul class="s-tab-zoom owl-carousel single-product-active"
 								id="gallery_01">
+								<c:forEach items="${ImagesDAO.getAllByProductId(product.id)}" var="img">
 								<li><a href="#" class="elevatezoom-gallery active"
-									data-update="" data-image="assets/img/product/product4.jpg"
-									data-zoom-image="assets/img/product/product4.jpg"> <img
-										src="assets/img/s-product/product3.jpg" alt="zo-th-1" />
+									data-update="" data-image="${img.img}"
+									data-zoom-image="${img.img}"> <img
+										src="${img.img}" alt="zo-th-1" />
 								</a></li>
-								<li><a href="#" class="elevatezoom-gallery active"
-									data-update="" data-image="assets/img/product/product6.jpg"
-									data-zoom-image="assets/img/product/product6.jpg"> <img
-										src="assets/img/s-product/product.jpg" alt="zo-th-1" />
-								</a></li>
-								<li><a href="#" class="elevatezoom-gallery active"
-									data-update="" data-image="assets/img/product/product8.jpg"
-									data-zoom-image="assets/img/product/product8.jpg"> <img
-										src="assets/img/s-product/product2.jpg" alt="zo-th-1" />
-								</a></li>
-								<li><a href="#" class="elevatezoom-gallery active"
-									data-update="" data-image="assets/img/product/product2.jpg"
-									data-zoom-image="assets/img/product/product2.jpg"> <img
-										src="assets/img/s-product/product4.jpg" alt="zo-th-1" />
-								</a></li>
+								</c:forEach>
+								
 							</ul>
 						</div>
 					</div>
@@ -95,53 +81,35 @@
 					<div class="product_d_right">
 						<form action="#">
 
-							<h1>Amazon Cloud Cam</h1>
-							<div class=" product_ratting">
+							<h1 style="margin-bottom: 0px;">${product.name}</h1>
+							<div class=" product_ratting" style="margin-bottom:5px;">
 								<ul>
 									<li><a href="#"><i class="fa fa-star"></i></a></li>
 									<li><a href="#"><i class="fa fa-star"></i></a></li>
 									<li><a href="#"><i class="fa fa-star"></i></a></li>
 									<li><a href="#"><i class="fa fa-star"></i></a></li>
 									<li><a href="#"><i class="fa fa-star"></i></a></li>
-									<li class="review"><a href="#"> 1 review </a></li>
-									<li class="review"><a href="#"> Write a review </a></li>
 								</ul>
 							</div>
-							<div class="product_price">
-								<span class="current_price">$70.00</span>
+							<div class="product_content">
+								<span class="current_price">${product.price-product.price*product.promotion/100}VNĐ</span>
+								<c:if test="${product.promotion!=0}">
+									<span class="old_price">${product.price}VNĐ</span>
+								</c:if>
 							</div>
 							<div class="product_desc">
-								<p>More room to move. With 80GB or 160GB of storage and up
-									to 40 hours of battery life, the new iPod classic lets you
-									enjoy up to 40,000 songs or up to 200 hours of video or any
-									combination wherever you go. Cover Flow. Browse through your
-									music collection by flipping through album art. Select an album
-									to turn it over and see the track list. Enhanced interface.
-									Experience a whole new way to browse and view your music and
-									video. Sleeker design. Beautiful, durable, and sleeker than
-									ever, iPod classic now features an anodized aluminum and
-									polish..</p>
+								<p>${product.description}</p>
 							</div>
 
-							<div class="product_variant color">
-								<h3>color</h3>
-								<select class="niceselect_option" id="color" name="produc_color">
-									<option selected value="1">choose in option</option>
-									<option value="2">choose in option2</option>
-									<option value="3">choose in option3</option>
-									<option value="4">choose in option4</option>
-								</select>
-							</div>
+							
 							<div class="product_variant size">
 								<h3>size</h3>
 								<select class="niceselect_option" id="color1"
 									name="produc_color">
 									<option selected value="1">size</option>
-									<option value="2">x</option>
-									<option value="2">xl</option>
-									<option value="3">md</option>
-									<option value="4">xxl</option>
-									<option value="4">s</option>
+									<c:forEach items="${sizeDAO.getSizeByProductId(product.id)}" var="size">
+									<option value="${size.size}">${size.size}</option>
+									</c:forEach>
 								</select>
 							</div>
 							<div class="product_variant quantity">
@@ -154,9 +122,7 @@
 									<li><a href="#" title="Add to wishlist"><i
 											class="fa fa-heart-o" aria-hidden="true"></i> Add to Wish
 											List</a></li>
-									<li><a href="#" title="Add to Compare"><i
-											class="fa fa-sliders" aria-hidden="true"></i> Compare this
-											Product</a></li>
+									
 								</ul>
 							</div>
 
@@ -179,134 +145,7 @@
 	</div>
 	<!--product details end-->
 
-	<!--product info start-->
-	<div class="product_d_info">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="product_d_inner">
-						<div class="product_info_button">
-							<ul class="nav" role="tablist">
-								<li><a class="active" data-toggle="tab" href="#info"
-									role="tab" aria-controls="info" aria-selected="false">More
-										info</a></li>
-								<li><a data-toggle="tab" href="#sheet" role="tab"
-									aria-controls="sheet" aria-selected="false">Data sheet</a></li>
-								<li><a data-toggle="tab" href="#reviews" role="tab"
-									aria-controls="reviews" aria-selected="false">Reviews</a></li>
-							</ul>
-						</div>
-						<div class="tab-content">
-							<div class="tab-pane fade show active" id="info" role="tabpanel">
-								<div class="product_info_content">
-									<p>Fashion has been creating well-designed collections
-										since 2010. The brand offers feminine designs delivering
-										stylish separates and statement dresses which have since
-										evolved into a full ready-to-wear collection in which every
-										item is a vital part of a woman's wardrobe. The result? Cool,
-										easy, chic looks with youthful elegance and unmistakable
-										signature style. All the beautiful pieces are made in Italy
-										and manufactured with the greatest attention. Now Fashion
-										extends to a range of accessories including shoes, hats, belts
-										and more!</p>
-								</div>
-							</div>
-
-							<div class="tab-pane fade" id="sheet" role="tabpanel">
-								<div class="product_d_table">
-									<form action="#">
-										<table>
-											<tbody>
-												<tr>
-													<td class="first_child">Compositions</td>
-													<td>Polyester</td>
-												</tr>
-												<tr>
-													<td class="first_child">Styles</td>
-													<td>Girly</td>
-												</tr>
-												<tr>
-													<td class="first_child">Properties</td>
-													<td>Short Dress</td>
-												</tr>
-											</tbody>
-										</table>
-									</form>
-								</div>
-								<div class="product_info_content">
-									<p>Fashion has been creating well-designed collections
-										since 2010. The brand offers feminine designs delivering
-										stylish separates and statement dresses which have since
-										evolved into a full ready-to-wear collection in which every
-										item is a vital part of a woman's wardrobe. The result? Cool,
-										easy, chic looks with youthful elegance and unmistakable
-										signature style. All the beautiful pieces are made in Italy
-										and manufactured with the greatest attention. Now Fashion
-										extends to a range of accessories including shoes, hats, belts
-										and more!</p>
-								</div>
-							</div>
-							<div class="tab-pane fade" id="reviews" role="tabpanel">
-								<div class="product_info_content">
-									<p>Fashion has been creating well-designed collections
-										since 2010. The brand offers feminine designs delivering
-										stylish separates and statement dresses which have since
-										evolved into a full ready-to-wear collection in which every
-										item is a vital part of a woman's wardrobe. The result? Cool,
-										easy, chic looks with youthful elegance and unmistakable
-										signature style. All the beautiful pieces are made in Italy
-										and manufactured with the greatest attention. Now Fashion
-										extends to a range of accessories including shoes, hats, belts
-										and more!</p>
-								</div>
-								<div class="product_info_inner">
-									<div class="product_ratting mb-10">
-										<ul>
-											<li><a href="#"><i class="fa fa-star"></i></a></li>
-											<li><a href="#"><i class="fa fa-star"></i></a></li>
-											<li><a href="#"><i class="fa fa-star"></i></a></li>
-											<li><a href="#"><i class="fa fa-star"></i></a></li>
-											<li><a href="#"><i class="fa fa-star"></i></a></li>
-										</ul>
-										<strong>Posthemes</strong>
-										<p>09/07/2018</p>
-									</div>
-									<div class="product_demo">
-										<strong>demo</strong>
-										<p>That's OK!</p>
-									</div>
-								</div>
-								<div class="product_review_form">
-									<form action="#">
-										<h2>Add a review</h2>
-										<p>Your email address will not be published. Required
-											fields are marked</p>
-										<div class="row">
-											<div class="col-12">
-												<label for="review_comment">Your review </label>
-												<textarea name="comment" id="review_comment"></textarea>
-											</div>
-											<div class="col-lg-6 col-md-6">
-												<label for="author">Name</label> <input id="author"
-													type="text">
-
-											</div>
-											<div class="col-lg-6 col-md-6">
-												<label for="email">Email </label> <input id="email"
-													type="text">
-											</div>
-										</div>
-										<button type="submit">Submit</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--product info end-->
+	
 
 	<!--product section area start-->
 	<section class="product_section related_product">
@@ -314,28 +153,24 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="section_title">
-						<h2>Related Products</h2>
-						<p>Contemporary, minimal and modern designs embody the Lavish
-							Alice handwriting</p>
+						<h2>Sản phẩm liên quan</h2>
 					</div>
 				</div>
 			</div>
 			<div class="product_area">
 				<div class="row">
 					<div class="product_carousel product_three_column4 owl-carousel">
+					<c:forEach var="product_cate" items="${productDAO.getProductByCategory(product.id)}">
 						<div class="col-lg-3">
 							<div class="single_product">
 								<div class="product_thumb">
 									<a class="primary_img" href="product-details.jsp"><img
-										src="assets/img/product/product21.jpg" alt=""></a> <a
-										class="secondary_img" href="product-details.jsp"><img
-										src="assets/img/product/product22.jpg" alt=""></a>
+										src="${ImagesDAO.getByProductId(product.category_id).img}" alt=""></a>
 									<div class="product_action">
 										<div class="hover_action">
 											<a href="#"><i class="fa fa-plus"></i></a>
 											<div class="action_button">
 												<ul>
-
 													<li><a title="add to cart" href="cart.jsp"><i
 															class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
 													<li><a href="wishlist.jsp" title="Add to Wishlist"><i
@@ -343,7 +178,6 @@
 
 													<li><a href="compare.jsp" title="Add to Compare"><i
 															class="fa fa-sliders" aria-hidden="true"></i></a></li>
-
 												</ul>
 											</div>
 										</div>
@@ -355,18 +189,19 @@
 									</div>
 
 									<div class="product_sale">
-										<span>-7%</span>
+										<span>-${product_cate.promotion}%</span>
 									</div>
 								</div>
 								<div class="product_content">
 									<h3>
-										<a href="product-details.jsp">Marshall Portable Bluetooth</a>
+										<a href="product-details.jsp">${product_cate.promotion}</a>
 									</h3>
-									<span class="current_price">Â£60.00</span> <span
+									<span class="current_price"></span> <span
 										class="old_price">Â£86.00</span>
 								</div>
 							</div>
 						</div>
+					</c:forEach>
 						<div class="col-lg-3">
 							<div class="single_product">
 								<div class="product_thumb">

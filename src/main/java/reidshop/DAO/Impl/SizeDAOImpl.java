@@ -72,7 +72,6 @@ public class SizeDAOImpl extends ConnectDB implements ISizeDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 int size = rs.getInt("size");
-
                 Size data = new Size(size,product_id);
                 sizes.add(data);
             }

@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -13,6 +14,7 @@
 <link rel="shortcut icon" type="image/x-icon"
 	href="assets/img/favicon.ico">
 
+
 <!-- CSS 
     ========================= -->
 
@@ -26,10 +28,10 @@
 </head>
 
 <body>
-<!-- Header Section Begin-->
+	<!-- Header Section Begin-->
 	<jsp:include page="header.jsp" />
 	<!-- Header Section End -->
-	
+
 	<!--breadcrumbs area start-->
 	<div class="breadcrumbs_area">
 		<div class="container">
@@ -68,11 +70,10 @@
 							<div class="widget_list widget_categories">
 								<h2>Product categories</h2>
 								<ul>
-									<li><a href="#">Categories1 <span>6</span></a></li>
-									<li><a href="#"> Categories2 <span>10</span></a></li>
-									<li><a href="#">Categories3 <span>4</span></a></li>
-									<li><a href="#"> Categories4 <span>4</span></a></li>
-									<li><a href="#">Categories5 <span>3</span></a></li>
+									<c:forEach var="category" items="${categories}">
+										<li><a href="#">${category.name}</a></li>
+									</c:forEach>
+
 
 								</ul>
 							</div>
@@ -167,974 +168,87 @@
 						</div>
 						<!--shop toolbar end-->
 
-						<div class="row shop_wrapper">
-							<div class="col-lg-4 col-md-4 col-12 ">
-								<div class="single_product">
-									<div class="product_thumb">
-										<a class="primary_img" href="product-details.jsp"><img
-											src="assets/img/product/product15.jpg" alt=""></a> <a
-											class="secondary_img" href="product-details.jsp"><img
-											src="assets/img/product/product16.jpg" alt=""></a>
-
-										<div class="quick_button">
-											<a href="product-details.jsp" title="quick_view">Xem sáº£n
-												pháº©m</a>
-										</div>
-
-										<div class="double_base">
-											<div class="product_sale">
-												<span>-7%</span>
+						<div class="row shop_wrapper" id="content-product">
+							<c:forEach var="product" items="${products}">
+								<div class="product col-lg-4 col-md-4 col-12 ">
+									<div class="single_product">
+										<div class="product_thumb">
+											<a class="primary_img" href="product-details.jsp"><img
+												src="${ImagesDAO.getByProductId(product.id).img}" alt=""></a>
+											<div class="quick_button">
+												<a href="product-details.jsp" title="quick_view">Xem sản
+													phẩm</a>
 											</div>
-											<div class="label_product">
-												<span>new</span>
+											<div class="double_base">
+												<div class="product_sale">
+													<c:if test="${product.promotion!=0}">
+														<span>-${product.promotion}%</span>
+													</c:if>
+												</div>
 											</div>
 										</div>
-									</div>
 
-									<div class="product_content grid_content">
-										<h3>
-											<a href="product-details.jsp">Marshall Portable
-												Bluetooth</a>
-										</h3>
-										<span class="current_price">Â£60.00</span> <span
-											class="old_price">Â£86.00</span>
-									</div>
-
-
-									<div class="product_content list_content">
-										<h3>
-											<a href="product-details.jsp">Marshall Portable
-												Bluetooth</a>
-										</h3>
-										<div class="product_ratting">
-											<ul>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-											</ul>
-										</div>
-										<div class="product_price">
-											<span class="current_price">Â£60.00</span> <span
-												class="old_price">Â£86.00</span>
-										</div>
-										<div class="product_desc">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis ad, iure incidunt. Ab consequatur temporibus non
-												eveniet inventore doloremque necessitatibus sed, ducimus
-												quisquam, ad asperiores eligendi quia fugiat minus doloribus
-												distinctio assumenda pariatur, quidem laborum quae quasi
-												suscipit. Cupiditate dolor blanditiis rerum aliquid
-												temporibus, libero minus nihil, veniam suscipit? Autem
-												repellendus illo, amet praesentium fugit, velit natus?
-												Dolorum perferendis reiciendis in quam porro ratione
-												eveniet, tempora saepe ducimus, alias?</p>
+										<div class="product_content grid_content">
+											<h3>
+												<a href="product-details.jsp">${product.name}</a>
+											</h3>
+											<span class="current_price">${product.price-product.price*product.promotion/100}VNĐ</span>
+											<c:if test="${product.promotion!=0}">
+												<span class="old_price">${product.price}VNĐ</span>
+											</c:if>
 										</div>
 
-									</div>
-
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-12 ">
-								<div class="single_product">
-									<div class="product_thumb">
-										<a class="primary_img" href="product-details.jsp"><img
-											src="assets/img/product/product22.jpg" alt=""></a> <a
-											class="secondary_img" href="product-details.jsp"><img
-											src="assets/img/product/product23.jpg" alt=""></a>
-
-										<div class="quick_button">
-											<a href="product-details.jsp" title="quick_view">Xem sáº£n
-												pháº©m</a>
-										</div>
-
-										<div class="label_product">
-											<span>new</span>
-										</div>
-									</div>
-
-									<div class="product_content grid_content">
-										<h3>
-											<a href="product-details.jsp">Koss KPH7 Portable</a>
-										</h3>
-										<span class="current_price">Â£60.00</span>
-									</div>
-
-
-									<div class="product_content list_content">
-										<h3>
-											<a href="product-details.jsp">Koss KPH7 Portable</a>
-										</h3>
-										<div class="product_ratting">
-											<ul>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-											</ul>
-										</div>
-										<div class="product_price">
-											<span class="current_price">Â£60.00</span> <span
-												class="old_price">Â£86.00</span>
-										</div>
-										<div class="product_desc">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis ad, iure incidunt. Ab consequatur temporibus non
-												eveniet inventore doloremque necessitatibus sed, ducimus
-												quisquam, ad asperiores eligendi quia fugiat minus doloribus
-												distinctio assumenda pariatur, quidem laborum quae quasi
-												suscipit. Cupiditate dolor blanditiis rerum aliquid
-												temporibus, libero minus nihil, veniam suscipit? Autem
-												repellendus illo, amet praesentium fugit, velit natus?
-												Dolorum perferendis reiciendis in quam porro ratione
-												eveniet, tempora saepe ducimus, alias?</p>
-										</div>
-
-									</div>
-
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-12 ">
-								<div class="single_product">
-									<div class="product_thumb">
-										<a class="primary_img" href="product-details.jsp"><img
-											src="assets/img/product/product10.jpg" alt=""></a> <a
-											class="secondary_img" href="product-details.jsp"><img
-											src="assets/img/product/product11.jpg" alt=""></a>
-
-										<div class="quick_button">
-											<a href="product-details.jsp" title="quick_view">Xem sáº£n
-												pháº©m</a>
-										</div>
-
-										<div class="double_base">
-											<div class="product_sale">
-												<span>-7%</span>
+										<div class="product_content list_content">
+											<h3>
+												<a href="product-details.jsp">${product.name}</a>
+											</h3>
+											<div class="product_ratting">
+												<ul>
+													<li><a href="#"><i class="fa fa-star"></i></a></li>
+													<li><a href="#"><i class="fa fa-star"></i></a></li>
+													<li><a href="#"><i class="fa fa-star"></i></a></li>
+													<li><a href="#"><i class="fa fa-star"></i></a></li>
+													<li><a href="#"><i class="fa fa-star"></i></a></li>
+												</ul>
 											</div>
-											<div class="label_product">
-												<span>new</span>
+											<div class="product_price">
+												<span class="current_price">${product.price-product.price*product.promotion/100}VNĐ</span>
+												<span class="old_price">${product.price}VNĐ</span>
+											</div>
+											<div class="product_desc">
+												<p>${product.description}</p>
 											</div>
 										</div>
 									</div>
-
-									<div class="product_content grid_content">
-										<h3>
-											<a href="product-details.jsp">Beats Solo2 Solo 2</a>
-										</h3>
-										<span class="current_price">Â£60.00</span> <span
-											class="old_price">Â£86.00</span>
-									</div>
-
-
-									<div class="product_content list_content">
-										<h3>
-											<a href="product-details.jsp">Beats Solo2 Solo 2</a>
-										</h3>
-										<div class="product_ratting">
-											<ul>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-											</ul>
-										</div>
-										<div class="product_price">
-											<span class="current_price">Â£60.00</span> <span
-												class="old_price">Â£86.00</span>
-										</div>
-										<div class="product_desc">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis ad, iure incidunt. Ab consequatur temporibus non
-												eveniet inventore doloremque necessitatibus sed, ducimus
-												quisquam, ad asperiores eligendi quia fugiat minus doloribus
-												distinctio assumenda pariatur, quidem laborum quae quasi
-												suscipit. Cupiditate dolor blanditiis rerum aliquid
-												temporibus, libero minus nihil, veniam suscipit? Autem
-												repellendus illo, amet praesentium fugit, velit natus?
-												Dolorum perferendis reiciendis in quam porro ratione
-												eveniet, tempora saepe ducimus, alias?</p>
-										</div>
-
-									</div>
-
 								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-12 ">
-								<div class="single_product">
-									<div class="product_thumb">
-										<a class="primary_img" href="product-details.jsp"><img
-											src="assets/img/product/product17.jpg" alt=""></a> <a
-											class="secondary_img" href="product-details.jsp"><img
-											src="assets/img/product/product18.jpg" alt=""></a>
+							</c:forEach>
 
-										<div class="quick_button">
-											<a href="product-details.jsp" title="quick_view">Xem sáº£n
-												pháº©m</a>
-										</div>
 
-										<div class="label_product">
-											<span>new</span>
-										</div>
-									</div>
-
-									<div class="product_content grid_content">
-										<h3>
-											<a href="product-details.jsp">Beats EP Wired</a>
-										</h3>
-										<span class="current_price">Â£60.00</span> <span
-											class="old_price">Â£86.00</span>
-									</div>
-
-
-									<div class="product_content list_content">
-										<h3>
-											<a href="product-details.jsp">Beats EP Wired</a>
-										</h3>
-										<div class="product_ratting">
-											<ul>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-											</ul>
-										</div>
-										<div class="product_price">
-											<span class="current_price">Â£60.00</span>
-										</div>
-										<div class="product_desc">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis ad, iure incidunt. Ab consequatur temporibus non
-												eveniet inventore doloremque necessitatibus sed, ducimus
-												quisquam, ad asperiores eligendi quia fugiat minus doloribus
-												distinctio assumenda pariatur, quidem laborum quae quasi
-												suscipit. Cupiditate dolor blanditiis rerum aliquid
-												temporibus, libero minus nihil, veniam suscipit? Autem
-												repellendus illo, amet praesentium fugit, velit natus?
-												Dolorum perferendis reiciendis in quam porro ratione
-												eveniet, tempora saepe ducimus, alias?</p>
-										</div>
-
-									</div>
-
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-12 ">
-								<div class="single_product">
-									<div class="product_thumb">
-										<a class="primary_img" href="product-details.jsp"><img
-											src="assets/img/product/product19.jpg" alt=""></a> <a
-											class="secondary_img" href="product-details.jsp"><img
-											src="assets/img/product/product20.jpg" alt=""></a>
-
-										<div class="quick_button">
-											<a href="product-details.jsp" title="quick_view">Xem sáº£n
-												pháº©m</a>
-										</div>
-
-										<div class="product_sale">
-											<span>-7%</span>
-										</div>
-									</div>
-
-									<div class="product_content grid_content">
-										<h3>
-											<a href="product-details.jsp">Bose SoundLink Bluetooth</a>
-										</h3>
-										<span class="current_price">Â£60.00</span> <span
-											class="old_price">Â£86.00</span>
-									</div>
-
-
-									<div class="product_content list_content">
-										<h3>
-											<a href="product-details.jsp">Bose SoundLink Bluetooth</a>
-										</h3>
-										<div class="product_ratting">
-											<ul>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-											</ul>
-										</div>
-										<div class="product_price">
-											<span class="current_price">Â£60.00</span> <span
-												class="old_price">Â£86.00</span>
-										</div>
-										<div class="product_desc">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis ad, iure incidunt. Ab consequatur temporibus non
-												eveniet inventore doloremque necessitatibus sed, ducimus
-												quisquam, ad asperiores eligendi quia fugiat minus doloribus
-												distinctio assumenda pariatur, quidem laborum quae quasi
-												suscipit. Cupiditate dolor blanditiis rerum aliquid
-												temporibus, libero minus nihil, veniam suscipit? Autem
-												repellendus illo, amet praesentium fugit, velit natus?
-												Dolorum perferendis reiciendis in quam porro ratione
-												eveniet, tempora saepe ducimus, alias?</p>
-										</div>
-
-									</div>
-
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-12 ">
-								<div class="single_product">
-									<div class="product_thumb">
-										<a class="primary_img" href="product-details.jsp"><img
-											src="assets/img/product/product21.jpg" alt=""></a> <a
-											class="secondary_img" href="product-details.jsp"><img
-											src="assets/img/product/product22.jpg" alt=""></a>
-
-										<div class="quick_button">
-											<a href="product-details.jsp" title="quick_view">Xem sáº£n
-												pháº©m</a>
-										</div>
-
-										<div class="double_base">
-											<div class="product_sale">
-												<span>-7%</span>
-											</div>
-											<div class="label_product">
-												<span>new</span>
-											</div>
-										</div>
-									</div>
-
-									<div class="product_content grid_content">
-										<h3>
-											<a href="product-details.jsp">Apple iPhone SE 16GB</a>
-										</h3>
-										<span class="current_price">Â£60.00</span> <span
-											class="old_price">Â£86.00</span>
-									</div>
-
-
-									<div class="product_content list_content">
-										<h3>
-											<a href="product-details.jsp">Apple iPhone SE 16GB</a>
-										</h3>
-										<div class="product_ratting">
-											<ul>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-											</ul>
-										</div>
-										<div class="product_price">
-											<span class="current_price">Â£60.00</span>
-										</div>
-										<div class="product_desc">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis ad, iure incidunt. Ab consequatur temporibus non
-												eveniet inventore doloremque necessitatibus sed, ducimus
-												quisquam, ad asperiores eligendi quia fugiat minus doloribus
-												distinctio assumenda pariatur, quidem laborum quae quasi
-												suscipit. Cupiditate dolor blanditiis rerum aliquid
-												temporibus, libero minus nihil, veniam suscipit? Autem
-												repellendus illo, amet praesentium fugit, velit natus?
-												Dolorum perferendis reiciendis in quam porro ratione
-												eveniet, tempora saepe ducimus, alias?</p>
-										</div>
-
-									</div>
-
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-12 ">
-								<div class="single_product">
-									<div class="product_thumb">
-										<a class="primary_img" href="product-details.jsp"><img
-											src="assets/img/product/product23.jpg" alt=""></a> <a
-											class="secondary_img" href="product-details.jsp"><img
-											src="assets/img/product/product24.jpg" alt=""></a>
-
-										<div class="quick_button">
-											<a href="product-details.jsp" title="quick_view">Xem sáº£n
-												pháº©m</a>
-										</div>
-
-										<div class="product_sale">
-											<span>-7%</span>
-										</div>
-									</div>
-
-									<div class="product_content grid_content">
-										<h3>
-											<a href="product-details.jsp">Beats Solo Wireless</a>
-										</h3>
-										<span class="current_price">Â£60.00</span> <span
-											class="old_price">Â£86.00</span>
-									</div>
-
-
-									<div class="product_content list_content">
-										<h3>
-											<a href="product-details.jsp">Beats Solo Wireless</a>
-										</h3>
-										<div class="product_ratting">
-											<ul>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-											</ul>
-										</div>
-										<div class="product_price">
-											<span class="current_price">Â£60.00</span> <span
-												class="old_price">Â£86.00</span>
-										</div>
-										<div class="product_desc">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis ad, iure incidunt. Ab consequatur temporibus non
-												eveniet inventore doloremque necessitatibus sed, ducimus
-												quisquam, ad asperiores eligendi quia fugiat minus doloribus
-												distinctio assumenda pariatur, quidem laborum quae quasi
-												suscipit. Cupiditate dolor blanditiis rerum aliquid
-												temporibus, libero minus nihil, veniam suscipit? Autem
-												repellendus illo, amet praesentium fugit, velit natus?
-												Dolorum perferendis reiciendis in quam porro ratione
-												eveniet, tempora saepe ducimus, alias?</p>
-										</div>
-
-									</div>
-
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-12 ">
-								<div class="single_product">
-									<div class="product_thumb">
-										<a class="primary_img" href="product-details.jsp"><img
-											src="assets/img/product/product25.jpg" alt=""></a> <a
-											class="secondary_img" href="product-details.jsp"><img
-											src="assets/img/product/product26.jpg" alt=""></a>
-
-										<div class="quick_button">
-											<a href="product-details.jsp" title="quick_view">Xem sáº£n
-												pháº©m</a>
-										</div>
-
-										<div class="label_product">
-											<span>new</span>
-										</div>
-									</div>
-
-									<div class="product_content grid_content">
-										<h3>
-											<a href="product-details.jsp">Apple iPad with Retina</a>
-										</h3>
-										<span class="current_price">Â£60.00</span>
-									</div>
-
-
-									<div class="product_content list_content">
-										<h3>
-											<a href="product-details.jsp">Apple iPad with Retina</a>
-										</h3>
-										<div class="product_ratting">
-											<ul>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-											</ul>
-										</div>
-										<div class="product_price">
-											<span class="current_price">Â£60.00</span> <span
-												class="old_price">Â£86.00</span>
-										</div>
-										<div class="product_desc">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis ad, iure incidunt. Ab consequatur temporibus non
-												eveniet inventore doloremque necessitatibus sed, ducimus
-												quisquam, ad asperiores eligendi quia fugiat minus doloribus
-												distinctio assumenda pariatur, quidem laborum quae quasi
-												suscipit. Cupiditate dolor blanditiis rerum aliquid
-												temporibus, libero minus nihil, veniam suscipit? Autem
-												repellendus illo, amet praesentium fugit, velit natus?
-												Dolorum perferendis reiciendis in quam porro ratione
-												eveniet, tempora saepe ducimus, alias?</p>
-										</div>
-
-									</div>
-
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-12 ">
-								<div class="single_product">
-									<div class="product_thumb">
-										<a class="primary_img" href="product-details.jsp"><img
-											src="assets/img/product/product27.jpg" alt=""></a> <a
-											class="secondary_img" href="product-details.jsp"><img
-											src="assets/img/product/product28.jpg" alt=""></a>
-
-										<div class="quick_button">
-											<a href="product-details.jsp" title="quick_view">Xem sáº£n
-												pháº©m</a>
-										</div>
-
-										<div class="product_sale">
-											<span>-7%</span>
-										</div>
-									</div>
-
-									<div class="product_content grid_content">
-										<h3>
-											<a href="product-details.jsp">Marshall Portable
-												Bluetooth</a>
-										</h3>
-										<span class="current_price">Â£60.00</span> <span
-											class="old_price">Â£86.00</span>
-									</div>
-
-
-									<div class="product_content list_content">
-										<h3>
-											<a href="product-details.jsp">Marshall Portable
-												Bluetooth</a>
-										</h3>
-										<div class="product_ratting">
-											<ul>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-											</ul>
-										</div>
-										<div class="product_price">
-											<span class="current_price">Â£60.00</span> <span
-												class="old_price">Â£86.00</span>
-										</div>
-										<div class="product_desc">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis ad, iure incidunt. Ab consequatur temporibus non
-												eveniet inventore doloremque necessitatibus sed, ducimus
-												quisquam, ad asperiores eligendi quia fugiat minus doloribus
-												distinctio assumenda pariatur, quidem laborum quae quasi
-												suscipit. Cupiditate dolor blanditiis rerum aliquid
-												temporibus, libero minus nihil, veniam suscipit? Autem
-												repellendus illo, amet praesentium fugit, velit natus?
-												Dolorum perferendis reiciendis in quam porro ratione
-												eveniet, tempora saepe ducimus, alias?</p>
-										</div>
-
-									</div>
-
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-12 ">
-								<div class="single_product">
-									<div class="product_thumb">
-										<a class="primary_img" href="product-details.jsp"><img
-											src="assets/img/product/product2.jpg" alt=""></a> <a
-											class="secondary_img" href="product-details.jsp"><img
-											src="assets/img/product/product1.jpg" alt=""></a>
-
-										<div class="quick_button">
-											<a href="product-details.jsp" title="quick_view">Xem sáº£n
-												pháº©m</a>
-										</div>
-										<div class="label_product">
-											<span>new</span>
-										</div>
-									</div>
-
-									<div class="product_content grid_content">
-										<h3>
-											<a href="product-details.jsp">JBL Flip 3 Portable</a>
-										</h3>
-										<span class="current_price">Â£60.00</span>
-									</div>
-
-
-									<div class="product_content list_content">
-										<h3>
-											<a href="product-details.jsp">JBL Flip 3 Portable</a>
-										</h3>
-										<div class="product_ratting">
-											<ul>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-											</ul>
-										</div>
-										<div class="product_price">
-											<span class="current_price">Â£60.00</span> <span
-												class="old_price">Â£86.00</span>
-										</div>
-										<div class="product_desc">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis ad, iure incidunt. Ab consequatur temporibus non
-												eveniet inventore doloremque necessitatibus sed, ducimus
-												quisquam, ad asperiores eligendi quia fugiat minus doloribus
-												distinctio assumenda pariatur, quidem laborum quae quasi
-												suscipit. Cupiditate dolor blanditiis rerum aliquid
-												temporibus, libero minus nihil, veniam suscipit? Autem
-												repellendus illo, amet praesentium fugit, velit natus?
-												Dolorum perferendis reiciendis in quam porro ratione
-												eveniet, tempora saepe ducimus, alias?</p>
-										</div>
-
-									</div>
-
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-12 ">
-								<div class="single_product">
-									<div class="product_thumb">
-										<a class="primary_img" href="product-details.jsp"><img
-											src="assets/img/product/product3.jpg" alt=""></a> <a
-											class="secondary_img" href="product-details.jsp"><img
-											src="assets/img/product/product4.jpg" alt=""></a>
-
-										<div class="quick_button">
-											<a href="product-details.jsp" title="quick_view">Xem sáº£n
-												pháº©m</a>
-										</div>
-
-										<div class="product_sale">
-											<span>-7%</span>
-										</div>
-									</div>
-
-									<div class="product_content grid_content">
-										<h3>
-											<a href="product-details.jsp">Marshall Portable
-												Bluetooth</a>
-										</h3>
-										<span class="current_price">Â£60.00</span> <span
-											class="old_price">Â£86.00</span>
-									</div>
-
-
-									<div class="product_content list_content">
-										<h3>
-											<a href="product-details.jsp">Marshall Portable
-												Bluetooth</a>
-										</h3>
-										<div class="product_ratting">
-											<ul>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-											</ul>
-										</div>
-										<div class="product_price">
-											<span class="current_price">Â£60.00</span> <span
-												class="old_price">Â£86.00</span>
-										</div>
-										<div class="product_desc">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis ad, iure incidunt. Ab consequatur temporibus non
-												eveniet inventore doloremque necessitatibus sed, ducimus
-												quisquam, ad asperiores eligendi quia fugiat minus doloribus
-												distinctio assumenda pariatur, quidem laborum quae quasi
-												suscipit. Cupiditate dolor blanditiis rerum aliquid
-												temporibus, libero minus nihil, veniam suscipit? Autem
-												repellendus illo, amet praesentium fugit, velit natus?
-												Dolorum perferendis reiciendis in quam porro ratione
-												eveniet, tempora saepe ducimus, alias?</p>
-										</div>
-
-									</div>
-
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-12 ">
-								<div class="single_product">
-									<div class="product_thumb">
-										<a class="primary_img" href="product-details.jsp"><img
-											src="assets/img/product/product5.jpg" alt=""></a> <a
-											class="secondary_img" href="product-details.jsp"><img
-											src="assets/img/product/product6.jpg" alt=""></a>
-
-										<div class="quick_button">
-											<a href="product-details.jsp" title="quick_view">Xem sáº£n
-												pháº©m</a>
-										</div>
-
-										<div class="double_base">
-											<div class="product_sale">
-												<span>-7%</span>
-											</div>
-											<div class="label_product">
-												<span>new</span>
-											</div>
-										</div>
-									</div>
-
-									<div class="product_content grid_content">
-										<h3>
-											<a href="product-details.jsp">Marshall Portable
-												Bluetooth</a>
-										</h3>
-										<span class="current_price">Â£60.00</span>
-									</div>
-
-
-									<div class="product_content list_content">
-										<h3>
-											<a href="product-details.jsp">Marshall Portable
-												Bluetooth</a>
-										</h3>
-										<div class="product_ratting">
-											<ul>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-											</ul>
-										</div>
-										<div class="product_price">
-											<span class="current_price">Â£60.00</span> <span
-												class="old_price">Â£86.00</span>
-										</div>
-										<div class="product_desc">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis ad, iure incidunt. Ab consequatur temporibus non
-												eveniet inventore doloremque necessitatibus sed, ducimus
-												quisquam, ad asperiores eligendi quia fugiat minus doloribus
-												distinctio assumenda pariatur, quidem laborum quae quasi
-												suscipit. Cupiditate dolor blanditiis rerum aliquid
-												temporibus, libero minus nihil, veniam suscipit? Autem
-												repellendus illo, amet praesentium fugit, velit natus?
-												Dolorum perferendis reiciendis in quam porro ratione
-												eveniet, tempora saepe ducimus, alias?</p>
-										</div>
-
-									</div>
-
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-12 ">
-								<div class="single_product">
-									<div class="product_thumb">
-										<a class="primary_img" href="product-details.jsp"><img
-											src="assets/img/product/product7.jpg" alt=""></a> <a
-											class="secondary_img" href="product-details.jsp"><img
-											src="assets/img/product/product8.jpg" alt=""></a>
-
-										<div class="quick_button">
-											<a href="product-details.jsp" title="quick_view">Xem sáº£n
-												pháº©m</a>
-										</div>
-
-										<div class="product_sale">
-											<span>-7%</span>
-										</div>
-									</div>
-
-									<div class="product_content grid_content">
-										<h3>
-											<a href="product-details.jsp">Marshall Portable
-												Bluetooth</a>
-										</h3>
-										<span class="current_price">Â£60.00</span> <span
-											class="old_price">Â£86.00</span>
-									</div>
-
-
-									<div class="product_content list_content">
-										<h3>
-											<a href="product-details.jsp">Marshall Portable
-												Bluetooth</a>
-										</h3>
-										<div class="product_ratting">
-											<ul>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-											</ul>
-										</div>
-										<div class="product_price">
-											<span class="current_price">Â£60.00</span> <span
-												class="old_price">Â£86.00</span>
-										</div>
-										<div class="product_desc">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis ad, iure incidunt. Ab consequatur temporibus non
-												eveniet inventore doloremque necessitatibus sed, ducimus
-												quisquam, ad asperiores eligendi quia fugiat minus doloribus
-												distinctio assumenda pariatur, quidem laborum quae quasi
-												suscipit. Cupiditate dolor blanditiis rerum aliquid
-												temporibus, libero minus nihil, veniam suscipit? Autem
-												repellendus illo, amet praesentium fugit, velit natus?
-												Dolorum perferendis reiciendis in quam porro ratione
-												eveniet, tempora saepe ducimus, alias?</p>
-										</div>
-
-									</div>
-
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-12 ">
-								<div class="single_product">
-									<div class="product_thumb">
-										<a class="primary_img" href="product-details.jsp"><img
-											src="assets/img/product/product9.jpg" alt=""></a> <a
-											class="secondary_img" href="product-details.jsp"><img
-											src="assets/img/product/product10.jpg" alt=""></a>
-
-										<div class="quick_button">
-											<a href="product-details.jsp" title="quick_view">Xem sáº£n
-												pháº©m</a>
-										</div>
-
-										<div class="product_sale">
-											<span>-7%</span>
-										</div>
-									</div>
-
-									<div class="product_content grid_content">
-										<h3>
-											<a href="product-details.jsp">Marshall Portable
-												Bluetooth</a>
-										</h3>
-										<span class="current_price">Â£60.00</span> <span
-											class="old_price">Â£86.00</span>
-									</div>
-
-
-									<div class="product_content list_content">
-										<h3>
-											<a href="product-details.jsp">Marshall Portable
-												Bluetooth</a>
-										</h3>
-										<div class="product_ratting">
-											<ul>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-											</ul>
-										</div>
-										<div class="product_price">
-											<span class="current_price">Â£60.00</span> <span
-												class="old_price">Â£86.00</span>
-										</div>
-										<div class="product_desc">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis ad, iure incidunt. Ab consequatur temporibus non
-												eveniet inventore doloremque necessitatibus sed, ducimus
-												quisquam, ad asperiores eligendi quia fugiat minus doloribus
-												distinctio assumenda pariatur, quidem laborum quae quasi
-												suscipit. Cupiditate dolor blanditiis rerum aliquid
-												temporibus, libero minus nihil, veniam suscipit? Autem
-												repellendus illo, amet praesentium fugit, velit natus?
-												Dolorum perferendis reiciendis in quam porro ratione
-												eveniet, tempora saepe ducimus, alias?</p>
-										</div>
-
-									</div>
-
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-12 ">
-								<div class="single_product">
-									<div class="product_thumb">
-										<a class="primary_img" href="product-details.jsp"><img
-											src="assets/img/product/product11.jpg" alt=""></a> <a
-											class="secondary_img" href="product-details.jsp"><img
-											src="assets/img/product/product12.jpg" alt=""></a>
-
-										<div class="quick_button">
-											<a href="product-details.jsp" title="quick_view">Xem sáº£n
-												pháº©m</a>
-										</div>
-
-										<div class="label_product">
-											<span>new</span>
-										</div>
-									</div>
-
-									<div class="product_content grid_content">
-										<h3>
-											<a href="product-details.jsp">Marshall Portable
-												Bluetooth</a>
-										</h3>
-										<span class="current_price">Â£60.00</span>
-									</div>
-
-
-									<div class="product_content list_content">
-										<h3>
-											<a href="product-details.jsp">Marshall Portable
-												Bluetooth</a>
-										</h3>
-										<div class="product_ratting">
-											<ul>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-												<li><a href="#"><i class="fa fa-star"></i></a></li>
-											</ul>
-										</div>
-										<div class="product_price">
-											<span class="current_price">Â£60.00</span> <span
-												class="old_price">Â£86.00</span>
-										</div>
-										<div class="product_desc">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis ad, iure incidunt. Ab consequatur temporibus non
-												eveniet inventore doloremque necessitatibus sed, ducimus
-												quisquam, ad asperiores eligendi quia fugiat minus doloribus
-												distinctio assumenda pariatur, quidem laborum quae quasi
-												suscipit. Cupiditate dolor blanditiis rerum aliquid
-												temporibus, libero minus nihil, veniam suscipit? Autem
-												repellendus illo, amet praesentium fugit, velit natus?
-												Dolorum perferendis reiciendis in quam porro ratione
-												eveniet, tempora saepe ducimus, alias?</p>
-										</div>
-
-									</div>
-
-								</div>
-							</div>
 						</div>
-
 						<div class="shop_toolbar t_bottom">
 							<div class="pagination">
-								<ul>
-									<li class="current">1</li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li class="next"><a href="#">next</a></li>
-									<li><a href="#">>></a></li>
-								</ul>
+								<button onclick="loadMore()" class="btn-outline-primary"
+									style="width: 350px; font-size: 20px; line-height: 24px;">Xem
+									tiếp</button>
 							</div>
 						</div>
 						<!--shop toolbar end-->
-						<!--shop wrapper end-->
 					</div>
 				</div>
-			</div>
 
+
+				<!--shop wrapper end-->
+			</div>
 		</div>
+	</div>
+
+	</div>
 	</div>
 	<!--shop  area end-->
 
-	  <!--footer area start-->
+	<!--footer area start-->
 	<jsp:include page="footer.jsp" />
-    <!--footer area start-->
+	<!--footer area start-->
 
 	<!-- modal area start-->
 	<div class="modal fade" id="modal_box" tabindex="-1" role="dialog"
@@ -1284,8 +398,27 @@
 
 	<!-- Main JS -->
 	<script src="assets/js/main.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-
+	<script>
+		function loadMore() {
+			var amount = document.getElementsByClassName("product").length;
+			$.ajax({
+				url : "./shoploadMore",
+				type : "get",
+				data : {
+					exits : amount
+				},
+				success : function(data) {
+					var row = document.getElementById("content-product");
+					row.innerHTML += data;
+				},
+				error : function(xhr) {
+				}
+			});
+		};
+	</script>
 
 </body>
 
