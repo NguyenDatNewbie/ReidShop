@@ -18,7 +18,7 @@ import reidshop.Entity.Account;
  *
  */
 public class AccountDAOImpl extends ConnectDB implements IAccountDAO {
-	
+
 	@Override
 	public void Insert(Account Ac)
 	{
@@ -67,6 +67,26 @@ public class AccountDAOImpl extends ConnectDB implements IAccountDAO {
 		}
 	}
 
+	public Account CheckLogin(String username, String password){
+		String sql = "Select *from Account where username = ? and password = ?";
+		Account account = null;
+		try {
+			Connection conn = super.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1,username);
+			ps.setString(2,password);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()){
+				int id = rs.getInt("id");
+				int role = rs.getInt("role");
+				account = new Account(id,username,password,role);
+			}
+		}catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		return account;
+	}
 	@Override
 	public List<Account> getAll(){
 		String sql = "SELECT *from Account";

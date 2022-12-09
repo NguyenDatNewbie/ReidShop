@@ -26,10 +26,21 @@
                         <div class="top_right">
                             <ul>
                                <li class="top_links"><a href="#">My Account <i class="ion-chevron-down"></i></a>
-                                    <ul class="dropdown_links">
-                                        <li><a href="my-account.jsp">My Account </a></li>
-                                        <li><a href="#">Sign In</a></li>
-                                    </ul>
+                                   <%
+  	    if(session.getAttribute("username")!=null)
+              {
+                  out.print("<ul class=\"dropdown_links\">\r\n"
+             				+ "       <li><a href=\"./login\">My Account </a></li>\r\n"
+                			+ "   <li><a href=\"./logout\">Logout</a></li>\r\n"
+                			+ "</ul>");
+              }
+  	    else{
+  	    	out.print("<ul class=\"dropdown_links\">\r\n"
+     				+ "       <li><a href=\"./login\">My Account </a></li>\r\n"
+        			+ "   <li><a href=\"./login\">Sign In</a></li>\r\n"
+        			+ "</ul>");
+  	    }
+  	%>
                                 </li> 
                                
                             </ul>
@@ -38,65 +49,67 @@
                         <div class="cart_area">
                             <div class="middel_links">
                                <ul>
-                                   <li><a href="login.jsp">Login</a></li>
+                                   <li><a href="./login">Login</a></li>
                                    <li>/</li>
-                                   <li><a href="login.jsp">Register</a></li>
+                                   <li><a href="./login">Register</a></li>
                                </ul>
 
                             </div>
                             <div class="cart_link">
-                                <a href="#"><i class="fa fa-shopping-basket"></i>2 item(s)</a>
+                                <a href="./listCart">
+<%--                                    <i class="fa fa-shopping-basket"></i>2 item(s)--%>
+                                </a>
                                 <!--mini cart-->
-                                 <div class="mini_cart">
-                                    <div class="cart_item top">
-                                       <div class="cart_img">
-                                           <a href="#"><img src="./assets/img/s-product/product.jpg" alt=""></a>
-                                       </div>
-                                        <div class="cart_info">
-                                            <a href="#">Apple iPhone SE 16GB</a>
+<%--                                 <div class="mini_cart">--%>
+<%--                                    <div class="cart_item top">--%>
+<%--                                       <div class="cart_img">--%>
+<%--                                           <a href="#"><img src="./assets/img/s-product/product.jpg" alt=""></a>--%>
+<%--                                       </div>--%>
+<%--                                        <div class="cart_info">--%>
+<%--                                            <a href="#">Apple iPhone SE 16GB</a>--%>
 
-                                            <span>1x $60.00</span>
-    
-                                        </div>
-                                        <div class="cart_remove">
-                                            <a href="#"><i class="ion-android-close"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="cart_item bottom">
-                                       <div class="cart_img">
-                                           <a href="#"><img src="./assets/img/s-product/product2.jpg" alt=""></a>
-                                       </div>
-                                        <div class="cart_info">
-                                            <a href="#">Marshall Portable  Bluetooth</a>
-                                                <span> 1x $160.00</span>
-                                        </div>
-                                        <div class="cart_remove">
-                                            <a href="#"><i class="ion-android-close"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="cart__table">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-left">Sub-Total :</td>
-                                                    <td class="text-right">$150.00</td>
-                                                </tr>
-                                             
-                                                <tr>
-                                                    <td class="text-left">Total :</td>
-                                                    <td class="text-right">$184.00</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    
-                                    <div class="cart_button view_cart">
-                                        <a href="cart.jsp">View Cart</a>
-                                    </div>
-                                    <div class="cart_button checkout">
-                                        <a href="checkout.jsp">Checkout</a>
-                                    </div>
-                                </div>
+<%--                                            <span>1x $60.00</span>--%>
+<%--    --%>
+<%--                                        </div>--%>
+<%--                                        <div class="cart_remove">--%>
+<%--                                            <a href="#"><i class="ion-android-close"></i></a>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="cart_item bottom">--%>
+<%--                                       <div class="cart_img">--%>
+<%--                                           <a href="#"><img src="./assets/img/s-product/product2.jpg" alt=""></a>--%>
+<%--                                       </div>--%>
+<%--                                        <div class="cart_info">--%>
+<%--                                            <a href="#">Marshall Portable  Bluetooth</a>--%>
+<%--                                                <span> 1x $160.00</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="cart_remove">--%>
+<%--                                            <a href="#"><i class="ion-android-close"></i></a>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="cart__table">--%>
+<%--                                        <table>--%>
+<%--                                            <tbody>--%>
+<%--                                                <tr>--%>
+<%--                                                    <td class="text-left">Sub-Total :</td>--%>
+<%--                                                    <td class="text-right">$150.00</td>--%>
+<%--                                                </tr>--%>
+<%--                                             --%>
+<%--                                                <tr>--%>
+<%--                                                    <td class="text-left">Total :</td>--%>
+<%--                                                    <td class="text-right">$184.00</td>--%>
+<%--                                                </tr>--%>
+<%--                                            </tbody>--%>
+<%--                                        </table>--%>
+<%--                                    </div>--%>
+<%--                                    --%>
+<%--                                    <div class="cart_button view_cart">--%>
+<%--                                        <a href="cart.jsp">View Cart</a>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="cart_button checkout">--%>
+<%--                                        <a href="checkout.jsp">Checkout</a>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
                                 <!--mini cart end-->
                             </div>
                         </div>
@@ -108,17 +121,7 @@
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a href="#">Shop</a>
-                                    <ul class="sub-menu">
-                                        
-                                        <li class="menu-item-has-children">
-                                            <a href="#">other Pages</a>
-                                            
-                                        </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="#">Product Types</a>
-                                            
-                                        </li>
-                                    </ul>
+                                  
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a href="#">blog</a>
@@ -169,11 +172,21 @@
                         <div class="top_right text-right">
                             <ul>
                                <li class="top_links"><a href="#">My Account <i class="ion-chevron-down"></i></a>
-                                    <ul class="dropdown_links">
-                                        
-                                        <li><a href="my-account.jsp">My Account </a></li>
-                                        <li><a href="#">Sign In</a></li>
-                                    </ul>
+                                   <%
+  	   	 if(session.getAttribute("username")!=null)
+              {
+                  out.print("<ul class=\"dropdown_links\">\r\n"
+             				+ "       <li><a href=\"./login\">My Account </a></li>\r\n"
+                			+ "   <li><a href=\"./logout\">Logout</a></li>\r\n"
+                			+ "</ul>");
+              }
+  	    else{
+  	    	out.print("<ul class=\"dropdown_links\">\r\n"
+     				+ "       <li><a href=\"./login\">My Account </a></li>\r\n"
+        			+ "   <li><a href=\"./login\">Sign In</a></li>\r\n"
+        			+ "</ul>");
+  	    }
+  	%>
                                 </li> 
                             </ul>
                         </div>   
@@ -204,59 +217,8 @@
                         <div class="col-lg-4">
                             <div class="cart_area">
                                 <div class="cart_link">
-                                    <a href="#"><i class="fa fa-shopping-basket"></i>2 item(s)</a>
-                                    <!--mini cart-->
-                                     <div class="mini_cart">
-                                        <div class="cart_item top">
-                                       <div class="cart_img">
-                                           <a href="#"><img src="./assets/img/s-product/product.jpg" alt=""></a>
-                                       </div>
-                                        <div class="cart_info">
-                                            <a href="#">Apple iPhone SE 16GB</a>
-
-                                            <span>1x $60.00</span>
-    
-                                        </div>
-                                        <div class="cart_remove">
-                                            <a href="#"><i class="ion-android-close"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="cart_item bottom">
-                                       <div class="cart_img">
-                                           <a href="#"><img src="./assets/img/s-product/product2.jpg" alt=""></a>
-                                       </div>
-                                        <div class="cart_info">
-                                            <a href="#">Marshall Portable  Bluetooth</a>
-                                                <span> 1x $160.00</span>
-                                        </div>
-                                        <div class="cart_remove">
-                                            <a href="#"><i class="ion-android-close"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="cart__table">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-left">Sub-Total :</td>
-                                                    <td class="text-right">$150.00</td>
-                                                </tr>
-                                             
-                                                <tr>
-                                                    <td class="text-left">Total :</td>
-                                                    <td class="text-right">$184.00</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    <a href="./listCart"><i class="fa fa-shopping-basket"></i></a>
                                     
-                                    <div class="cart_button view_cart">
-                                        <a href="cart.jsp">View Cart</a>
-                                    </div>
-                                    <div class="cart_button checkout">
-                                        <a href="checkout.jsp">Checkout</a>
-                                    </div>
-                                    </div>
-                                    <!--mini cart end-->
                                 </div>
                             </div>
                         </div>
@@ -310,8 +272,8 @@
                             <div class="main_menu"> 
                                 <nav>  
                                     <ul>
-                                        <li class="active"><a href="index.jsp">Home </a></li>
-                                        <li><a href="shop_category.jsp">shop </a></li>
+                                        <li class="active"><a href="./index">Home </a></li>
+                                        <li><a href="./shop">shop </a></li>
                                         <li><a href="about.jsp">About us</a></li>
                                         
                                         <li><a href="blog.jsp">blog</a></li>
@@ -328,3 +290,10 @@
         <!--header bottom end-->
     </header>
     <!--header area end-->
+    <script>
+    // dropdown_links
+
+  	
+
+	</script>
+    

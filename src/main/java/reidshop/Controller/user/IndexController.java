@@ -3,9 +3,11 @@ package reidshop.Controller.user;
 import reidshop.DAO.ICategoryDAO;
 import reidshop.DAO.IImagesDAO;
 import reidshop.DAO.IProductDAO;
+import reidshop.DAO.ISizeDAO;
 import reidshop.DAO.Impl.CategoryDAOImpl;
 import reidshop.DAO.Impl.ImagesDAOImpl;
 import reidshop.DAO.Impl.ProductDAOImpl;
+import reidshop.DAO.Impl.SizeDAOImpl;
 import reidshop.Entity.Category;
 import reidshop.Entity.Product;
 
@@ -40,11 +42,13 @@ public class IndexController extends HttpServlet {
 		List<Category> categories = categoryDAO.getAll();
 		IProductDAO productDAO = new ProductDAOImpl();
 		List<Product> products = productDAO.getSellingProduct(1);
+		ISizeDAO sizeDAO = new SizeDAOImpl();
 
 		request.setAttribute("ImagesDAO",ImagesDAO);
 		request.setAttribute("products",products);
 		request.setAttribute("categories",categories);
 		request.setAttribute("productDAO",productDAO);
+		request.setAttribute("sizeDAO",sizeDAO);
 		request.getRequestDispatcher("/user/index.jsp").forward(request, response);
 	}
 

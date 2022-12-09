@@ -18,11 +18,11 @@ import java.util.List;
 public class OrderDAOImpl extends ConnectDB implements IOrderDAO {
 	@Override
 	public void Insert(Orders orders) {
-		String sql = "Insert into Orders Values(?,?,?,?,?,?,?,?)";
+		String sql = "Insert into Orders Values(?,?,?,?,?,?,?,?,?)";
 		try {
 			Connection conn = super.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1,orders.getUserId());
+            ps.setString(1,orders.getUsername());
             ps.setInt(2,orders.getStoreId());
             ps.setInt(3,orders.getDeliveryId());
 			ps.setString(4, orders.getAddress());
@@ -30,6 +30,7 @@ public class OrderDAOImpl extends ConnectDB implements IOrderDAO {
             ps.setInt(6,orders.getStatus());
 			ps.setBigDecimal(7, orders.getTotal_price());
 			ps.setDate(8, Date.valueOf(LocalDate.now())); // createdAt
+			ps.setDate(9, null); // createdAt
 			ps.executeUpdate();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -43,7 +44,7 @@ public class OrderDAOImpl extends ConnectDB implements IOrderDAO {
 		try {
 			Connection conn = super.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1,orders.getUserId());
+			ps.setString(1,orders.getUsername());
             ps.setInt(2,orders.getStoreId());
             ps.setInt(3,orders.getDeliveryId());
             ps.setString(4, orders.getAddress());
@@ -81,7 +82,7 @@ public class OrderDAOImpl extends ConnectDB implements IOrderDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				int id = rs.getInt("id");
-                int userId= rs.getInt("userId");
+                String username= rs.getString("username");
                 int storeId = rs.getInt("storeId");
                 int deliveryId = rs.getInt("deliveryId");
 				String phone = rs.getString("phone");
@@ -90,7 +91,7 @@ public class OrderDAOImpl extends ConnectDB implements IOrderDAO {
                 BigDecimal total_price =rs.getBigDecimal("total_price");
 				java.util.Date createdAt = rs.getDate("createdAt");
 				java.util.Date updateAt = rs.getDate("updatedAt");
-				Orders order = new Orders(id, userId,storeId,deliveryId, address, phone,status,total_price, createdAt, updateAt);
+				Orders order = new Orders(id, username,storeId,deliveryId, address, phone,status,total_price, createdAt, updateAt);
 				orders.add(order);
 			}
 		} catch (Exception ex) {
@@ -109,7 +110,7 @@ public class OrderDAOImpl extends ConnectDB implements IOrderDAO {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-                int userId= rs.getInt("userId");
+				String username= rs.getString("username");
                 int storeId = rs.getInt("storeId");
                 int deliveryId = rs.getInt("deliveryId");
                 String phone = rs.getString("phone");
@@ -118,11 +119,28 @@ public class OrderDAOImpl extends ConnectDB implements IOrderDAO {
                 BigDecimal total_price =rs.getBigDecimal("total_price");
                 java.util.Date createdAt = rs.getDate("createdAt");
                 java.util.Date updateAt = rs.getDate("updatedAt");
-                order = new Orders(id, userId,storeId,deliveryId, address, phone,status,total_price, createdAt, updateAt);
+                order = new Orders(id, username,storeId,deliveryId, address, phone,status,total_price, createdAt, updateAt);
             }
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 		return order;
+	}
+
+	public Integer getId(String username) {
+		String sql = "SELECT *from Orders where username=?";
+		Integer id = null;
+		try {
+			Connection conn = super.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1,username);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				id = rs.getInt("id");
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return id;
 	}
 }

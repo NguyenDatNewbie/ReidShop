@@ -9,6 +9,7 @@ import reidshop.Entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ShopLoadMore
  */
-@WebServlet("/user/shoploadMore")
+@WebServlet({"/user/shoploadMore","/user/shoploadMore/ShopFilterCategory"})
 public class ShopLoadMore extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,14 +42,27 @@ public class ShopLoadMore extends HttpServlet {
 		String amount = request.getParameter("exits");
 		int iamount = Integer.parseInt(amount);
 		
+		String option = request.getParameter("option");
+		int ioption = Integer.parseInt(option);
 		IProductDAO productDAO = new ProductDAOImpl();
 		IImagesDAO ImagesDAO = new ImagesDAOImpl();
-		List<Product> products = productDAO.getTop9Next(1,iamount);
+		List<Product> products = new ArrayList<>();
+		String idCate = request.getParameter("categoryId");
+		if(idCate!=null)
+		{
+			Integer id = Integer.parseInt(idCate);
+			products = productDAO.getTop9NextByCategory(1, iamount, id,ioption);
+		}
+		else {
+			products = productDAO.getTop9Next(1,iamount,ioption);
+		}
+		
 		
 		PrintWriter out = response.getWriter();
 		for (Product product: products
 			 ) {
-			BigDecimal discount = product.getPrice().subtract(product.Tich(product.getPromotion()/100,product.getPrice()));
+			BigDecimal discount = product.getPrice().subtract(BigDecimal.valueOf(product.getPromotion()/100.00).multiply(product.getPrice()));
+			
 			out.println("<div class=\"product col-lg-4 col-md-4 col-12 \">\r\n"
 					+ "									<div class=\"single_product\">\r\n"
 					+ "										<div class=\"product_thumb\">\r\n"

@@ -16,4 +16,6 @@ public interface ICartDAO {
 
 	Cart get(int id);
 
+	Cart getByUserName(String username);
+
 }

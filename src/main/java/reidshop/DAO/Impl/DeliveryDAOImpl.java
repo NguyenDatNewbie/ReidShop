@@ -4,6 +4,7 @@ import reidshop.Connection.ConnectDB;
 import reidshop.DAO.IDeliveryDAO;
 import reidshop.Entity.Delivery;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -21,9 +22,9 @@ public class DeliveryDAOImpl extends ConnectDB implements IDeliveryDAO {
             Connection conn = super.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1,delivery.getName());
-            ps.setString(2,delivery.getPhone());
-            ps.setInt(3,delivery.getStatus());
-            ps.setDate(4, Date.valueOf(LocalDate.now()));
+            ps.setBigDecimal(2, delivery.getPrice());
+            ps.setDate(3, Date.valueOf(LocalDate.now()));
+            ps.setDate(4, null);
             ps.executeUpdate();
         }catch (Exception ex)
         {
@@ -34,15 +35,14 @@ public class DeliveryDAOImpl extends ConnectDB implements IDeliveryDAO {
 
     @Override
     public void Update(Delivery delivery){
-        String sql = "UPDATE  Delivery SET name=?, phone=?,status=?, updatedAt=? where id = ?";
+        String sql = "UPDATE  Delivery SET name=?, price=?, updatedAt=? where id = ?";
         try {
             Connection conn = super.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1,delivery.getName());
-            ps.setString(2,delivery.getPhone());
-            ps.setInt(3,delivery.getStatus());
-            ps.setDate(4, Date.valueOf(LocalDate.now()));
-            ps.setInt(5,delivery.getId());
+            ps.setBigDecimal(2, delivery.getPrice());
+            ps.setDate(3, Date.valueOf(LocalDate.now()));
+            ps.setInt(4,delivery.getId());
             ps.executeUpdate();
         }catch (Exception ex)
         {
@@ -75,11 +75,10 @@ public class DeliveryDAOImpl extends ConnectDB implements IDeliveryDAO {
             while (rs.next()){
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                String phone= rs.getString("phone");
-                int status= rs.getInt("status");
+                BigDecimal price = rs.getBigDecimal("price");
                 java.util.Date createdAt =rs.getDate("createdAt");
                 java.util.Date updateAt = rs.getDate("updatedAt");
-                Delivery delivery = new Delivery(id,name,phone,status,createdAt,updateAt);
+                Delivery delivery = new Delivery(id,name,price,createdAt,updateAt);
                 deliveries.add(delivery);
             }
         }catch (Exception ex)
@@ -99,12 +98,11 @@ public class DeliveryDAOImpl extends ConnectDB implements IDeliveryDAO {
             ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
-                String name = rs.getString("name");
-                String phone= rs.getString("phone");
-                int status= rs.getInt("status");
-                java.util.Date createdAt =rs.getDate("createdAt");
-                java.util.Date updateAt = rs.getDate("updatedAt");
-                delivery = new Delivery(id,name,phone,status,createdAt,updateAt);
+            	 String name = rs.getString("name");
+                 BigDecimal price = rs.getBigDecimal("price");
+                 java.util.Date createdAt =rs.getDate("createdAt");
+                 java.util.Date updateAt = rs.getDate("updatedAt");
+                delivery = new Delivery(id,name,price,createdAt,updateAt);
             }
         }catch (Exception ex)
         {

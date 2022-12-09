@@ -17,16 +17,18 @@ public class InfoUserDAOImpl extends ConnectDB implements IInfoUserDAO {
     @Override
     public void Insert(InfoUser info)
     {
-        String sql = "Insert into InfoUser Values(?,?,?,?,?,?)";
+        String sql = "Insert into InfoUser Values(?,?,?,?,?,?,?,?)";
         try {
             Connection conn = super.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1,info.getName());
-            ps.setString(2,info.getEmail());
-            ps.setString(3,info.getPhone());
-            ps.setString(4,info.getAddress());
-            ps.setString(5,info.getAvatar());
-            ps.setDate(6, Date.valueOf(LocalDate.now())); // createdAt
+            ps.setString(2,info.getName());
+            ps.setString(3,info.getEmail());
+            ps.setString(4,info.getPhone());
+            ps.setString(5,info.getAddress());
+            ps.setString(6,info.getAvatar());
+            ps.setDate(7, Date.valueOf(LocalDate.now())); // createdAt
+            ps.setDate(8, null); // createdAt
             ps.executeUpdate();
         }catch (Exception ex)
         {

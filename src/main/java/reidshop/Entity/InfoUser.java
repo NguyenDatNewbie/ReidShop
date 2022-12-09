@@ -12,6 +12,15 @@ public class InfoUser {
 	Date createdAt;
 	Date updateAt;
 
+	public InfoUser(int id, String name, String email, String phone, String address, String avatar) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.avatar = avatar;
+	}
 	public InfoUser(int id, String name, String email, String phone, String address, String avatar, Date createdAt,
 			Date updateAt) {
 		super();

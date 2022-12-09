@@ -18,15 +18,17 @@ import java.util.List;
 public class OrderItemDAOImpl extends ConnectDB implements IOrderItemDAO {
 	@Override
 	public void Insert(OrderItem orderItem) {
-		String sql = "Insert into OrderItem Values(?,?,?,?,?)";
+		String sql = "Insert into OrderItem Values(?,?,?,?,?,?,?)";
 		try {
 			Connection conn = super.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1,orderItem.getOrderId());
 			ps.setInt(2,orderItem.getProductId());
 			ps.setInt(3,orderItem.getCount());
-			ps.setBigDecimal(4, orderItem.getPrice());
-			ps.setDate(5, Date.valueOf(LocalDate.now())); // createdAt
+			ps.setInt(4,orderItem.getSize());
+			ps.setBigDecimal(5, orderItem.getPrice());
+			ps.setDate(6, Date.valueOf(LocalDate.now())); // createdAt
+			ps.setDate(7, null); // createdAt
 			ps.executeUpdate();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -78,10 +80,11 @@ public class OrderItemDAOImpl extends ConnectDB implements IOrderItemDAO {
 				int orderId =rs.getInt("orderId");
 				int productId=rs.getInt("productId");
 				int count=rs.getInt("count");
+                int size=rs.getInt("size");
 				BigDecimal price=rs.getBigDecimal("price");
 				java.util.Date createdAt = rs.getDate("createdAt");
 				java.util.Date updateAt = rs.getDate("updatedAt");
-				OrderItem orderItem = new OrderItem(id,orderId,productId,count,price, createdAt, updateAt);
+				OrderItem orderItem = new OrderItem(id,orderId,productId,count,size,price, createdAt, updateAt);
 				orderItems.add(orderItem);
 			}
 		} catch (Exception ex) {
@@ -103,10 +106,11 @@ public class OrderItemDAOImpl extends ConnectDB implements IOrderItemDAO {
 				int orderId =rs.getInt("orderId");
 				int productId=rs.getInt("productId");
 				int count=rs.getInt("count");
+                int size=rs.getInt("size");
 				BigDecimal price=rs.getBigDecimal("price");
 				java.util.Date createdAt = rs.getDate("createdAt");
 				java.util.Date updateAt = rs.getDate("updatedAt");
-				orderItem = new OrderItem(id,orderId,productId,count,price, createdAt, updateAt);
+				orderItem = new OrderItem(id,orderId,productId,count,size,price, createdAt, updateAt);
 
 			}
 		} catch (Exception ex) {

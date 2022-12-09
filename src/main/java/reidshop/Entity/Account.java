@@ -16,6 +16,13 @@ public class Account {
 		this.password = password;
 		this.role = role;
 	}
+	public Account(String username,String password,int role)
+	{
+
+		this.username=username;
+		this.password = password;
+		this.role = role;
+	}
 
 	public int getId() {
 		return id;

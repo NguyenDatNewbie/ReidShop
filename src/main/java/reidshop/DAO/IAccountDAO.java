@@ -17,4 +17,6 @@ public interface IAccountDAO {
 
 	Account getAccount(int id);
 
+	public Account CheckLogin(String username, String password);
+
 }

@@ -1,7 +1,9 @@
 package reidshop.DAO;
 
+import java.math.BigDecimal;
 import java.util.List;
 
+import reidshop.Entity.CartItem;
 import reidshop.Entity.Product;
 
 public interface IProductDAO {
@@ -20,10 +22,19 @@ public interface IProductDAO {
 
 	List<Product> getPopularProducts();
 
-	List<Product> getProductByCategory(int category_id);
+	List<Product> getProductByCategory(int store, int category_id);
 
-	List<Product> getTop9(int storeId);
+	List<Product> getTop9(int storeId, int option);
 
-	List<Product> getTop9Next(int storeId, int amount);
+	List<Product> getTop9Next(int storeId, int amount, int option);
 
+	List<Product> getTop9ByCategory(int storeId, int category, int option);
+
+	List<Product> getTop9NextByCategory(int storeId, int amount, int category, int option);
+
+	Product getProductByCartItem(CartItem cart);
+
+	BigDecimal TotalPrice_Promotion_count(Product product, int count);
+
+	BigDecimal TotalPrice_Promotion_count(Integer productId, int count);
 }

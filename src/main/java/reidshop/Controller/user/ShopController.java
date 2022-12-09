@@ -43,7 +43,7 @@ public class ShopController extends HttpServlet {
 		IProductDAO productDAO = new ProductDAOImpl();
 		IImagesDAO ImagesDAO = new ImagesDAOImpl();
 		List<Category> categories = categoryDAO.getAll();
-		List<Product> products = productDAO.getTop9(1);
+		List<Product> products = productDAO.getTop9(1,1);
 
 
 		request.setAttribute("ImagesDAO",ImagesDAO);

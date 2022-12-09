@@ -9,6 +9,8 @@ public class OrderItem {
 	int orderId;
 	int productId;
 	int count;
+
+	int size;
 	BigDecimal price;
 	Date createdAt;
 	Date updatedAt;
@@ -17,56 +19,97 @@ public class OrderItem {
 	public OrderItem() {
 		// TODO Auto-generated constructor stub
 	}
-	public OrderItem(int id, int orderId, int productId, int count, BigDecimal price, Date createdAt,
-					 Date updatedAt) {
+
+
+	public OrderItem(int id, int orderId, int productId, int count, int size, BigDecimal price, Date createdAt,
+			Date updatedAt) {
 		super();
 		this.id = id;
 		this.orderId = orderId;
 		this.productId = productId;
 		this.count = count;
+		this.size = size;
 		this.price = price;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
+
+
 	public int getId() {
 		return id;
 	}
+
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
 	public int getOrderId() {
 		return orderId;
 	}
+
+
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
+
+
 	public int getProductId() {
 		return productId;
 	}
+
+
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
+
+
 	public int getCount() {
 		return count;
 	}
+
+
 	public void setCount(int count) {
 		this.count = count;
 	}
+
+
+	public int getSize() {
+		return size;
+	}
+
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+
 	public BigDecimal getPrice() {
 		return price;
 	}
+
+
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
+
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
+
+
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
+
+
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
+
+
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}

@@ -18,7 +18,7 @@ public class CartDAOImpl extends ConnectDB implements ICartDAO {
         try {
             Connection conn = super.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1,cart.getUserId());
+            ps.setString(1,cart.getUsername());
             ps.setInt(2,cart.getStoreId());
             ps.setByte(3, (byte) 0);
             ps.executeUpdate();
@@ -30,13 +30,14 @@ public class CartDAOImpl extends ConnectDB implements ICartDAO {
 
     @Override
     public void Update(Cart cart) {
-        String sql = "UPDATE  Cart SET userId=?, storeId=?, complete=? where id = ?";
+        String sql = "UPDATE  Cart SET username=?, storeId=?, complete=? where id = ?";
         try {
             Connection conn = super.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1,cart.getUserId());
+            ps.setString(1,cart.getUsername());
             ps.setInt(2,cart.getStoreId());
             ps.setByte(3, cart.getComplete());
+            ps.setInt(4, cart.getId());
             ps.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -66,10 +67,10 @@ public class CartDAOImpl extends ConnectDB implements ICartDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                int userId= rs.getInt("userId");
+                String username= rs.getString("getUsername");
                 int storeId = rs.getInt("storeId");
                 byte complete = rs.getByte("complete");
-                Cart cart = new Cart(id, userId,storeId,complete);
+                Cart cart = new Cart(id, username,storeId,complete);
                 carts.add(cart);
             }
         } catch (Exception ex) {
@@ -89,14 +90,37 @@ public class CartDAOImpl extends ConnectDB implements ICartDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
 
-                int userId= rs.getInt("userId");
-                int storeId = rs.getInt("storeId");
-                byte complete = rs.getByte("complete");
-                cart = new Cart(id, userId,storeId,complete);
+            	 String username= rs.getString("getUsername");
+                 int storeId = rs.getInt("storeId");
+                 byte complete = rs.getByte("complete");
+                cart = new Cart(id, username,storeId,complete);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return cart;
     }
+    
+    @Override
+    public Cart getByUserName(String username) {
+        String sql = "SELECT *from Cart where username=? and complete=0";
+        Cart cart = new Cart();
+        try {
+            Connection conn = super.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int storeId = rs.getInt("storeId");
+                byte complete = rs.getByte("complete");
+                cart = new Cart(id, username,storeId,complete);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return cart;
+    }
+    
+   
 }

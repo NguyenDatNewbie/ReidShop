@@ -1,13 +1,15 @@
 package reidshop.Entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Delivery {
 
 	int id;
 	String name;
-	String phone;
-	int status;
+
+	BigDecimal price;
+	
 	Date createdAt;
 	Date updateAt;
 	
@@ -16,12 +18,18 @@ public class Delivery {
 		super();
 	}
 
-	public Delivery(int id, String name, String phone, int status, Date createdAt, Date updateAt) {
+	public Delivery(int id, String name, BigDecimal price) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.phone = phone;
-		this.status = status;
+		this.price = price;
+	}
+
+	public Delivery(int id, String name, BigDecimal price, Date createdAt, Date updateAt) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
 		this.createdAt = createdAt;
 		this.updateAt = updateAt;
 	}
@@ -42,20 +50,12 @@ public class Delivery {
 		this.name = name;
 	}
 
-	public String getPhone() {
-		return phone;
+	public BigDecimal getPrice() {
+		return price;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 
 	public Date getCreatedAt() {

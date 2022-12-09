@@ -16,4 +16,6 @@ public interface IOrderDAO {
 
 	Orders get(int id);
 
+	Integer getId(String username);
+
 }
